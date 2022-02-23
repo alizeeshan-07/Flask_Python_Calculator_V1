@@ -12,10 +12,10 @@ import re
 from flask import Flask, jsonify, render_template, request
 from gevent.pywsgi import WSGIServer
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 
-@app.route('/_calculate')
+@application.route('/_calculate')
 def calculate():
     a = request.args.get('number1', '0')
     operator = request.args.get('operator', '+')
@@ -34,10 +34,10 @@ def calculate():
     return jsonify(result=result)
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    application.run(debug=True)
